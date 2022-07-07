@@ -24,3 +24,13 @@
 @border-real: #dee2e6;
 
 // Mobile var
+
+//creamos una variable phone que tenga un ancho maximo de 500px
+@phone: ~"(max-width: 500px)";
+
+//NOTA si lo escribo asi: @phone: (max-width: 500px); funciona pero sale la alerta como error de sintaxis. pero anda bien
+//para solucionar esa alerta lo escribo: @phone: ~"(max-width: 500px)"; y sale la alerta roja.
+
+//ahora tengo que modificar las imagenes de la pag, como la imagenes musicales para saber donde buscar esas imagenes
+// voy a index.html y busco en que section estan esas imagenes... y estan en <section class="music-images">
+//para modificar voy al archivo .less que lo contenga, esta en home-page, en music-images.

@@ -2,7 +2,20 @@
 
 .home {
 
-  .intro {
+  .intro {// en index.html la imagen <img src = "img/main-header.png"></img> esta dentro de la clase <header class="intro">
+    //    entonces se que en .intro tengo que hacer el estilo. Creo img:
+
+    img{
+      //ancho de la imagen
+      width: 100%;
+
+      //margin-top, separacion entre la caja de los botones y la imagen
+      margin-top: 10px;
+
+      //ahora falta darle bordes rdondeados,una pcion es crear en mixins.less una funcion que haga eso:
+
+      .roundImg(20px)
+    }
 
     h2 {
       padding: 15px;
@@ -25,6 +38,27 @@
       border-radius: 20px;
       height: 100%;
     }
+    //dentro de la seccion modifico las imagenes
+    // utilizo el tag @media para trabajar con elementos del tipo media query, con @media le digo "quedate atento
+    //a modificaciones de pantalla" a que tamaño de pantalla? a @phone que saca el tamaño por variable
+
+    @media @phone { //cuando la pantalla sea del tamaño phone o comprima la ventana:
+
+      //no muestres las dos imagenes de la derecha(segun la imagen de la pag demo)
+      //entonces hago 
+
+      .ondas, .tecnologia { //tomo a la clase ondas y tecnologia (que  son las imagenes en el index.html que quiero sacar)
+
+        display: none;//none para que no las muestre
+      }
+      //y a la imagen auricular, quiero que se muestre en todo el ancho de la pantalla:
+      .auricular{
+
+        width: 100%;
+
+        //listo eso ya esta, ahora tengo que modificar la seccion .actual que contiene la imagen de lady gaga y textos
+      }
+    }
   }
 
   .musica-nueva {
@@ -46,18 +80,65 @@
     display: flex;
     justify-content: center;
 
+    //lo mismo utilizo el tag @media para que cuando la pantalla tenga determinado tamaño, haga esos cambios
+
+    @media @phone {
+
+      // lo que me piden es que al comprimirce la pantalla la imagen quede arriba del texto y no al costado
+      //puedo aplicar el mixins ya creado .flex y pasarle como parametro column, para que acomode los elementos 
+      //como columnas pero.. en el index.html el texto esta ariiba de la imagen, cuando haga column me va a quedar la imagen
+      //abajo de todo, para eso aplico en vez de column, column-reverse, eso va a hacer q se acomoden en columnas
+      //pero el ultimo elemento arriba y el primero abajo.
+
+      .flex(column-reverse,center, center );
+      padding: 0px;
+      //ahora toca modificar la imagen para que ocupe el ancho de la pantalla, vamos a .actual-img.
+    }
+
     .actual-text {
       width: 50%;
 
+      //ahora tengo q modificar el boton y el txto para que se estire a lo ancho solo cuando se comprima la pantalla 
+      @media @phone{
+
+        //el ancho
+        width: 100%;
+        
+        //alejar las letras del borde
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
       h3 {
         margin-bottom: 10px;
+
+        //cuando la imagen se comprima el texto quede centrado
+        @media @phone {
+
+          text-align: center;
+        }
       }
 
       p {
         margin-bottom: 26px;
       }
 
-      .btn {
+      .btn {//en index.html, encontre que el div <div class="btn"> que es el boton registrate, esta dentro de actual
+        //  asi fue que encontre que este es el lugar para darle el estilo al boton.
+
+        // el readme me dice que lo defina en un mixins, asi que voy a mixins.less a crearlo.
+        //color de la letra blanco, el color del boton (background) me lo pasan por variables, border:
+        .btn(white, @btn-bg-color, 20px);
+
+
+        //modifico el boton cuando la pantalla se comprima
+        @media @phone{
+
+          //el ancho
+          width: 100%;
+          //el texto centrado
+          text-align: center;
+        }
       }
     }
 
@@ -69,6 +150,22 @@
         width: 100%;
         height: auto;
         border-radius: 10px;
+      }
+
+      //modificamos el ancho de la imagen cuando la pantalla se comprime
+
+      @media @phone{
+
+        width: 100%;
+
+        //ahora para que quede mas centrada
+        margin-left: 1px;
+        margin-right: 1px;
+
+        //aplico un padding, como la imagen esta dentro del div, para que se aleje un poco de los bordes
+        padding: 5px;
+
+        //listo ahora falta que el boton registrate se alargue en lo ancho, cuando la pantalla se comprime
       }
     }
   }

@@ -1,1 +1,64 @@
 // Código de Nav acá
+
+// creamos un elemento nav para acceder al nav del index.less
+
+nav {
+    //llamo al mixins  que cree en mixins.less y le paso los valores:
+    //la direction = column, porque tengo dos elementos el titulo musica 8d y los botones
+    //el justify = center
+    //el aling = center
+    .flex(column, center, center);
+
+
+
+    //padding es el espacio entre el contenido y el borde de la pag
+    padding: 15px;
+    //le damos color al fondo, como se que color darle? en variables.less tengo
+    //una variable @nav-bg(background) que ya tiene el valor dle color.
+    background-color:@nav-bg;
+
+    // ahora toca modificar la caja que contiene a los botones , los ul del 
+    //index.html
+    //para eso vamos anidando los elementos a los que les queremos dar 
+    //estilos
+
+    ul{
+
+        
+
+        //modifico la altura entre el techo y los botones(voy provbando)
+        padding-top: 10px;
+        
+        //el ancho de los elementos
+        width: 40%;
+
+
+        //llamo a .flex para modificar el estilo de los botones:
+        //direction = row para que esten en fila
+        //justify = space-around, distribuye la informacion a lo largo de todo el espacio 
+        //aling = center
+
+        .flex(row, space-around, center);
+
+
+        //ahora le doy estilo a los botones
+
+        a{
+            //tamaño de la letra
+            font-size: 17px;
+
+            //el color de las letras, el color lo tomo de variables.less
+            color: @nav-font;
+
+            //para que saque el subrayado
+            text-decoration: none;
+        }
+
+        //si la pantalla se comprime que estire el ancho de los botones para que no se amontonen
+        @media @phone{
+            width: 95%;
+        }
+    }
+
+    
+}

@@ -1,1 +1,17 @@
 // Importar los archivos less acá:
+
+// html {
+//     background-color: red;
+// } 
+
+//notar que las variables estan arriba, xq cualquier impor que este por debajo si necesita una 
+//variable va a empesar a buscar para arriba. Por ejem
+//navigation.less utiliza mixins, si mixins.less estuviese a bajo de navigation, no encontraria 
+//el import. parecido al scoop de variables.
+@import "variables.less";
+@import "mixins.less";
+@import "reset.less";
+@import "global.less";
+@import "navigation.less";
+@import "footer.less";
+@import "home-page.less";

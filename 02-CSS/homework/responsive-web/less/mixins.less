@@ -1,1 +1,76 @@
 // Mixins acá
+//grupo de propiedades, que reciven un parametro para 
+//que las podamos modificar de acuerdo a las necesidades.
+
+//creamos un mixins llamado .flex para agrupar los botones de navigation.less
+//RECORDAR el punto en .flex
+
+.flex(@direction, @justify ,@align){
+
+    //creamos la caja donde van a estar los botones, vamos a mover los botones dentro de esa caja
+    display: flex;
+
+    //ahora que ponga los botones en fila, se lo paso como parametro
+    flex-direction: @direction;// row para filas y column si quisiera los botones en columnas
+
+    //ahora para centrar los botones  o llevar a la derech o izq
+    //centrado seria center, pero lo pasamos por parametro, x si quisiera hacerlo para otro lado
+    justify-content: @justify;
+
+    //ahora alineamos los items que esten dentro de él
+    align-items: @align;
+
+    //ahora queda invocar a la funcion .flex en nav (navigation.less) y pasarle el valor a los argumentos.
+}
+
+
+.roundImg(@radius){
+
+    //esto le va a dar bordes redondeados.
+    border-radius: @radius;
+
+    //ahora invocamos esta funcion en home-pages.less
+}
+
+
+.btn(@color ,@background, @border){
+
+    //primero agrandamos la letra "registrate"
+    font-size: 15px;
+    //el ancho de la letra
+    font-weight:300 ;
+
+    //color de la letras
+    color: @color;
+
+    //color del boton
+    background-color: @background;
+
+    //contorno redondeado para el boton
+    border-radius: @border;
+
+    //centrar las letras dentro del boton
+    display: inline-block;
+
+    //padding para definir la distancia entre las letras y los bordes del boton
+    padding: 10px;
+
+    //cuando paso el mouse por el boton que cambie el cursor flecha por la manito
+    cursor: pointer;
+
+    //ahora para hacer que el boton cambie de color tengo que asignarle la propiedad hover, para eso hacemos
+
+    &:hover{ // & es lo mismo que this. es como si dijiera .btn:hover para que todo el btn tenga esta propiedad.
+
+        //cuando se pase el mouse que invierta los colores. color del boton
+        background-color: @color; // va a tomar el color de las letras
+
+        //color de las letras tomen el color de fondo del boton
+        color: @background;
+
+        //el borde del boton sea un contorno negro de 1px(un circulo finito)
+        border: 1px solid black;
+    }
+
+    //invoco la funcion en home-page.less en btn y le paso los valores por parametro.
+}
